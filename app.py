@@ -267,7 +267,7 @@ if __name__ == "__main__":
     if debug != True:
         print('Sleeping 150...')
         #time.sleep(150)
-        os.system(f'bash {e.gitterFilePath}gitter.sh')
+        os.system(f'bash {e.gitterFilePath}gitter.sh &')
         time.sleep(150)
     else:
         time.sleep(5)
