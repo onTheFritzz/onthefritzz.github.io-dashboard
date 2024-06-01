@@ -264,7 +264,7 @@ if __name__ == "__main__":
     else:
         e.update(display='logo')
 
-    if debug != True:
+    if debug == False:
         #print('Sleeping 150...')
         #time.sleep(150)
         os.system(f'bash {e.gitterFilePath}gitter.sh &')
