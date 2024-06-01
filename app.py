@@ -16,7 +16,8 @@ class eReader():
         self.noaaEndpoint = yml['noaaEndpoint']
         self.ethEndpoint = yml['ethEndpoint']
         self.htmlOutputFile = yml['htmlOutput']
-        
+        self.gitterFilePath = yml['gitterFilePath']
+
         if os.name != 'nt':
             self.filePath = yml['linuxFilePath']
         else:
@@ -265,7 +266,8 @@ if __name__ == "__main__":
 
     if debug != True:
         print('Sleeping 150...')
+        #time.sleep(150)
+        os.system(f'bash {e.gitterFilePath}gitter.sh')
         time.sleep(150)
-        os.system(f'bash {e.filePath}gitter.sh')
     else:
         time.sleep(5)
