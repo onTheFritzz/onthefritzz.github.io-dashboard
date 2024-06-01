@@ -11,7 +11,7 @@ class eReader():
         with open('config.yaml', 'r') as y:
             yml = yaml.safe_load(y)
 
-        print(yml)
+        #print(yml)
         self.distanceEndpoint = yml['distanceEndpoint']
         self.noaaEndpoint = yml['noaaEndpoint']
         self.ethEndpoint = yml['ethEndpoint']
@@ -266,5 +266,6 @@ if __name__ == "__main__":
     if debug != True:
         print('Sleeping 150...')
         time.sleep(150)
+        os.system(f'bash {e.filePath}gitter.sh')
     else:
         time.sleep(5)
