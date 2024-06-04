@@ -222,6 +222,7 @@ if __name__ == "__main__":
   e = eReader()
   while True:
     now = dt.now().strftime('%H:%M:%S')
+    print(now)
     weekNumber = dt.today().weekday()
 
     if weekNumber < 5:
