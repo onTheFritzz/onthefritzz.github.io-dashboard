@@ -8,7 +8,7 @@ if os.name != 'nt':
 
 class eReader():
     def __init__(self):
-        with open('./config.yaml', 'r') as y:
+        with open(f'./config.yaml', 'r') as y:
             yml = yaml.safe_load(y)
 
         #print(yml)
