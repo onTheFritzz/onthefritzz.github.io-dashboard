@@ -226,10 +226,10 @@ if __name__ == "__main__":
     weekNumber = dt.today().weekday()
 
     if weekNumber < 5:
-        if now < '09:30:00':
+        if now < '09:00:00':
             e.update(display='logo') 
 
-        elif now > '09:30:00' and now < '09:45:00':
+        elif now > '09:00:00' and now < '09:15:00':
             e.getTravelTime()
             e.update(display='stats')
             print('Sleeping 900...')
