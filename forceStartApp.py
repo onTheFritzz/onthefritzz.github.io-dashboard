@@ -166,6 +166,7 @@ class eReader():
             
             except:
                 x += 1
+                print('Error in NOAA API')
                 outputArray = [f'NA / NA', 'NA']
                 continue
 
