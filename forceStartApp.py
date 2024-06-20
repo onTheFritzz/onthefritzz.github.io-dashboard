@@ -164,9 +164,9 @@ class eReader():
                 outputArray = [f'{temp}&#176;{unit} / {humidity}%', icon]
                 return(outputArray)
             
-            except:
+            except Exception as e:
                 x += 1
-                print('Error in NOAA API')
+                print(f'Error in NOAA API: {e}')
                 outputArray = [f'NA / NA', 'NA']
                 continue
 
