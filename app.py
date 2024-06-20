@@ -156,7 +156,10 @@ class eReader():
 
                 icon = todayForecast['icon']
                 temp, unit = [todayForecast['temperature'], todayForecast['temperatureUnit']]
-                humidity = f"{todayForecast['relativeHumidity']['value']}"
+                try:
+                    humidity = f"{todayForecast['relativeHumidity']['value']}"
+                except:
+                    humidity = "NA"
 
                 printString = f'{temp}*{unit} / {humidity}%'
                 print(f'Outside Temp: {printString}')
