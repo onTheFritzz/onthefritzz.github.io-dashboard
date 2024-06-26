@@ -154,7 +154,7 @@ class eReader():
 
                 todayForecast = noaaJson['properties']['periods'][0]
 
-                icon = f'api.weather.gov/{todayForecast["icon"]}'
+                icon = f'http://api.weather.gov{todayForecast["icon"]}'
                 temp, unit = [todayForecast['temperature'], todayForecast['temperatureUnit']]
                 try:
                     humidity = f"{todayForecast['relativeHumidity']['value']}"
