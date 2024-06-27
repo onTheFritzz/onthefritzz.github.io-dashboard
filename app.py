@@ -229,27 +229,28 @@ if __name__ == "__main__":
     weekNumber = dt.today().weekday()
 
     if weekNumber < 5:
-        if now < '09:00:00':
+        if now < '08:00:00':
             e.update(display='logo') 
 
         elif now > '09:00:00' and now < '09:15:00':
             e.getTravelTime()
             e.update(display='stats')
+            os.system(f'bash {e.gitterFilePath}gitter.sh &')
             print('Sleeping 900...')
             if debug != True:
                 time.sleep(900)
 
-        elif now > '10:30:00' and now < '10:45:00':
-            e.update(display='breaktime')
-            print('First Break.')
+        #elif now > '10:30:00' and now < '10:45:00':
+        #    e.update(display='breaktime')
+        #    print('First Break.')
 
-        elif now > '12:30:00' and now < '13:00:00':
-            e.update(display='breaktime')
-            print('Lunch time.')
+        #elif now > '12:30:00' and now < '13:00:00':
+        #    e.update(display='breaktime')
+        #    print('Lunch time.')
 
-        elif now > '14:30:00' and now < '14:45:00':
-            e.update(display='breaktime')
-            print('Second Break.')
+        #elif now > '14:30:00' and now < '14:45:00':
+        #    e.update(display='breaktime')
+        #    print('Second Break.')
 
         elif now > '16:15:00' and now < '17:00:00':
             e.getTravelTime()
@@ -258,8 +259,8 @@ if __name__ == "__main__":
             if debug != True:
                 time.sleep(500)
         
-        elif now > '17:00:00':
-            e.update(display='logo')
+        #elif now > '17:00:00':
+        #    e.update(display='logo')
         
         else:
             e.update(display='stats')
