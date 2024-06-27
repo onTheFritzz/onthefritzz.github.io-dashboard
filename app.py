@@ -82,7 +82,7 @@ class eReader():
           <font size="30"><b>#ETHERPRICE#</b></font></h9>
         </div>
     </div>
-
+    <br>
     <div class="card">
         <img src="../images/warehouse.png" alt="Avatar">
         <div class="container">
