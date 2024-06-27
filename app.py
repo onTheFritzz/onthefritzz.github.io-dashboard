@@ -55,8 +55,8 @@ class eReader():
       display: inline-block;
       padding: 10px;
       margin: 5px;
-      height: 240px;
-      width: 300px;
+      height: 300px; /*240px*/
+      width: 360px;  /*300px*/
     }
 
     .weatherImg {
