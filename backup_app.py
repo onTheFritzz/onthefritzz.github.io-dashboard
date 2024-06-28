@@ -33,11 +33,6 @@ class eReader():
     <!DOCTYPE html>
     <html>
     <head>
-    <script>
-    setInterval(function() {
-     window.location.reload();
-    }, 300_000);
-    </script>
     <style>
     .card {
       /* Add shadows to create the "card" effect */
