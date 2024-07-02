@@ -2,6 +2,11 @@
     <!DOCTYPE html>
     <html>
     <head>
+    <script>
+    setInterval(function() {
+     window.location.reload();
+    }, 300_000);
+    </script>
     <style>
     .card {
       /* Add shadows to create the "card" effect */
@@ -24,8 +29,8 @@
       display: inline-block;
       padding: 10px;
       margin: 5px;
-      height: 240px;
-      width: 300px;
+      height: 240px; /*240px*/
+      width: 300px;  /*300px*/
     }
 
     .weatherImg {
@@ -48,10 +53,10 @@
         <img src="../images/ether.png" alt="Avatar">
         <div class="container">
           <h8><b>Current ETHEREUM</b></h8><br>
-          <font size="30"><b>$3452.61</b></font></h9>
+          <font size="30"><b>$3454.49</b></font></h9>
         </div>
     </div>
-
+    <br>
     <div class="card">
         <img src="../images/warehouse.png" alt="Avatar">
         <div class="container">
@@ -62,14 +67,14 @@
 
     <div class="card">
         <!--<img src="thermo.png" alt="Avatar">-->
-        <div class="weatherImg"><img src="/icons/land/day/tsra,20?size=small" alt="Avatar" width="150" height="150"></div>
+        <div class="weatherImg"><img src="http://api.weather.gov/icons/land/day/tsra,20?size=small" alt="Avatar" width="150" height="150"></div>
         <div class="container">
           <h8><b>Outside Temp/Humidity</b></h8></font><br>
           <font size="30"><b>61&#176;F / 93%</b></font><br>
         </div>
     </div>
     <br>
-    APIs Last Updated: 07-02-2024 08:27:03
+    APIs Last Updated: 07-02-2024 08:28:16
     </center>
     </body>
     </html>                    
