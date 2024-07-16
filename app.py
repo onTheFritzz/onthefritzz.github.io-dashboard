@@ -98,7 +98,8 @@ class eReader():
 
     <div class="card">
         <!--<img src="thermo.png" alt="Avatar">-->
-        <div class="weatherImg"><img src="#WEATHERICON#" alt="Avatar" width="150" height="150"></div>
+        <img src="../images/weather.png" alt="Avatar">
+        <!--<div class="weatherImg"><img src="#WEATHERICON#" alt="Avatar" width="150" height="150"></div>-->
         <div class="container">
           <h8><b>#OUTSIDETITLE#</b></h8></font><br>
           <font size="30"><b>#OUTSIDETEMP#</b></font><br>
@@ -124,7 +125,7 @@ class eReader():
                 whTempHumid = '12&#176;F / 99%'
 
             outsideTitle = 'Outside Temp/Humidity'
-            outsideTempHumid, weatherIcon = self.scrapeNOAA()
+            outsideTempHumid = self.scrapeNOAA()
 
             cryptoTitle = 'Current ETHEREUM'
             cryptoPrice = self.getCryptoPrice()
@@ -134,7 +135,7 @@ class eReader():
             dashboardHtml = dashboardHtml.replace('#WAREHOUSETITLE#', whTitle).replace('#WAREHOUSETEMP#', whTempHumid)
             dashboardHtml = dashboardHtml.replace('#COMMUTETITLE#', travelTitle).replace('#COMMUTESTATUS#', travelInfo)
             dashboardHtml = dashboardHtml.replace('#OUTSIDETITLE#', outsideTitle).replace('#OUTSIDETEMP#', outsideTempHumid)
-            dashboardHtml = dashboardHtml.replace('#WEATHERICON#', weatherIcon)
+            #dashboardHtml = dashboardHtml.replace('#WEATHERICON#', weatherIcon)
             dashboardHtml = dashboardHtml.replace('#ETHERTITLE#', cryptoTitle).replace('#ETHERPRICE#', cryptoPrice)
             dashboardHtml = dashboardHtml.replace('#TIMESTAMP#', currentTime)
             
@@ -159,7 +160,7 @@ class eReader():
 
                 todayForecast = noaaJson['properties']['periods'][0]
 
-                icon = f'http://api.weather.gov{todayForecast["icon"]}'
+                #icon = f'http://api.weather.gov{todayForecast["icon"]}'
                 temp, unit = [todayForecast['temperature'], todayForecast['temperatureUnit']]
                 try:
                     humidity = f"{todayForecast['relativeHumidity']['value']}"
@@ -169,7 +170,7 @@ class eReader():
                 printString = f'{temp}*{unit} / {humidity}%'
                 print(f'Outside Temp: {printString}')
 
-                outputArray = [f'{temp}&#176;{unit} / {humidity}%', icon]
+                outputArray = f'{temp}&#176;{unit} / {humidity}%'#, icon]
                 return(outputArray)
             
             except:
