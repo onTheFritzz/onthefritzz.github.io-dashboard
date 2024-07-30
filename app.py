@@ -127,7 +127,7 @@ class eReader():
             outsideTitle = 'Outside Temp/Humidity'
             outsideTempHumid = self.scrapeNOAA()
 
-            cryptoTitle = 'Current ETHER Price'
+            cryptoTitle = 'ETHEREUM Price'
             cryptoPrice = self.getCryptoPrice()
 
             currentTime = f'APIs Last Updated: {dt.now().strftime("%m-%d-%Y %H:%M:%S")}'
