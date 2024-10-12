@@ -1,2 +1,2 @@
-# onthefritzz.github.io-ebookdisplay
+# onthefritzz.github.io-dashboard
 Drive eBook Display with HTML
