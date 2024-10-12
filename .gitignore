@@ -1,9 +1,1 @@
-env/
-config.yaml
-*.yaml
-*.sh
-startStuff.sh
-/env/*.*
-/env/**
-env/*.*
-env/**
+
