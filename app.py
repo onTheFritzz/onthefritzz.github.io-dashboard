@@ -1,10 +1,9 @@
-debug = False
 
 import requests, shutil, time, yaml, os
 from datetime import datetime as dt
-
-if os.name != 'nt':
-    import board, adafruit_dht
+from pyA20.gpio import gpio
+from pyA20.gpio import port
+import dht11
 
 class eReader():
     def __init__(self):
@@ -146,10 +145,6 @@ class eReader():
                 html.write(dashboardHtml)
 
             print('Updated display to stats.')
-
-        elif display == 'logo':
-            shutil.copyfile(f'{self.filePath}logo.html', f'{self.filePath}index.html')
-            print('Updated display to logo.')
     
     def scrapeNOAA(self):
         x = 0
@@ -181,15 +176,19 @@ class eReader():
         return(outputArray)
 
     def getWarehouseTemp(self):
+        PIN2 = port.PA6
+        gpio.init()
+
         x = 0
         while x < 5: # DHT11 doesn't output stats 100% of the time. Seems to be > 5/1 hit to miss ratio.
             try: # Try catching temp/humid 5x before moving along
-                dhtDevice = adafruit_dht.DHT11(board.D4)
+                instance = dht11.DHT11(pin=PIN2)
+                dhtDevice = instance.read()
+
                 tempC = dhtDevice.temperature
                 tempF = round(tempC * (9 / 5) + 32)
 
                 humidity = dhtDevice.humidity
-                dhtDevice.exit()
 
                 printString = f'{tempF}*F / {humidity}%'
                 print(f'Warehouse Temp: {printString}')
@@ -198,7 +197,6 @@ class eReader():
             
             except:
                 x += 1
-                dhtDevice.exit()
                 print('Warehouse temp error!')
                 outputString = f'NA / NA'
                 time.sleep(1)
@@ -235,51 +233,26 @@ if __name__ == "__main__":
     weekNumber = dt.today().weekday()
 
     if weekNumber < 5:
-        if now < '08:00:00':
-            e.update(display='logo') 
-
-        elif now > '09:00:00' and now < '09:15:00':
+        if now > '09:00:00' and now < '09:15:00':
             e.getTravelTime()
             e.update(display='stats')
             os.system(f'bash {e.gitterFilePath}gitter.sh &')
             print('Sleeping 900...')
-            if debug != True:
-                time.sleep(900)
-
-        #elif now > '10:30:00' and now < '10:45:00':
-        #    e.update(display='breaktime')
-        #    print('First Break.')
-
-        #elif now > '12:30:00' and now < '13:00:00':
-        #    e.update(display='breaktime')
-        #    print('Lunch time.')
-
-        #elif now > '14:30:00' and now < '14:45:00':
-        #    e.update(display='breaktime')
-        #    print('Second Break.')
+            time.sleep(900)
 
         elif now > '16:15:00' and now < '17:00:00':
             e.getTravelTime()
             e.update(display='stats')
             print('Sleeping 500...')
-            if debug != True:
-                time.sleep(500)
-        
-        #elif now > '17:00:00':
-        #    e.update(display='logo')
-        
+            time.sleep(500)
+
         else:
             e.update(display='stats')
             shutil.copyfile(f'{e.filePath}{e.htmlOutputFile}', f'{e.filePath}index.html')
 
     else:
-        e.update(display='logo')
+        pass
 
-    if debug == False:
-        #print('Sleeping 150...')
-        #time.sleep(150)
-        os.system(f'bash {e.gitterFilePath}gitter.sh &')
-        print('Sleeping 150...')
-        time.sleep(150)
-    else:
-        time.sleep(5)
+    os.system(f'bash {e.gitterFilePath}gitter.sh &')
+    print('Sleeping 150...')
+    time.sleep(150)
