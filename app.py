@@ -253,6 +253,6 @@ if __name__ == "__main__":
     else:
         pass
 
-    os.system(f'bash {e.gitterFilePath}gitter.sh &')
+    os.system(f'sudo bash {e.gitterFilePath}gitter.sh &')
     print('Sleeping 150...')
     time.sleep(150)
