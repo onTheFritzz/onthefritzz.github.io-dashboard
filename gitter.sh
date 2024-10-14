@@ -1,3 +1,4 @@
+#!/bin/bash
 git add .
-git commit -m "automated git new - working"
-git push &
+git commit -m "test"
+git push
