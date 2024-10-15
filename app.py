@@ -1,9 +1,8 @@
-
 import requests, shutil, time, yaml, os
 from datetime import datetime as dt
 from pyA20.gpio import gpio
 from pyA20.gpio import port
-import dht11
+from work import dht11
 
 class eReader():
     def __init__(self):
@@ -256,3 +255,5 @@ if __name__ == "__main__":
     os.system(f'sudo bash {e.gitterFilePath}gitter.sh &')
     print('Sleeping 150...')
     time.sleep(150)
+
+

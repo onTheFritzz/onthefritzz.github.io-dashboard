@@ -1,8 +1,6 @@
 import time
 from pyA20.gpio import gpio
 from pyA20.gpio import port
-#import RPi
-
 
 class DHT11Result:
     'DHT11 sensor result returned by DHT11.read() method'
@@ -25,6 +23,7 @@ class DHT11Result:
 
 
 class DHT11:
+    print('working')
     'DHT11 sensor reader class for Raspberry'
 
     __pin = 0
