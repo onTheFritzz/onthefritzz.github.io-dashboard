@@ -21,7 +21,7 @@ class eReader():
         else:
             self.filePath = yml['windowsFilePath']
 
-    def update(self, display=''):
+    def update(self):
         dashboardHtml = """
 <!DOCTYPE html>
 <html lang="en">
@@ -198,9 +198,9 @@ window.onload = loadDashboardData;
         with open(f'{self.filePath}index.html', 'w+') as html:
             html.write(dashboardHtml)
 
-        self.gitPushup()
         print('Updated display to stats.')
-    
+        self.gitPushup()
+
     def scrapeNOAA(self):
         x = 0
         while x < 3:
@@ -294,20 +294,18 @@ if __name__ == "__main__":
     if weekNumber < 5:
         if now > '08:00:00' and now < '08:15:00':
             e.getTravelTime()
-            e.update(display='stats')
-            e.gitPushup()
+            e.update()
             print('Sleeping 900...')
             time.sleep(900)
 
         elif now > '15:45:00' and now < '16:30:00':
             e.getTravelTime()
-            e.update(display='stats')
-            e.gitPushup()
+            e.update()
             print('Sleeping 500...')
             time.sleep(500)
 
         else:
-            e.update(display='stats')
+            e.update()
             shutil.copyfile(f'{e.filePath}{e.htmlOutputFile}', f'{e.filePath}index.html')
 
     else:
