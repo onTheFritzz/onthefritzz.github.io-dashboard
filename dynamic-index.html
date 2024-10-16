@@ -30,8 +30,8 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
             border-radius: 10px;
             padding: 10px; /* Adjusted padding for better layout */
-            height: 175px; /* Decreased height by 30% */
-            width: 320px; /* Width remains the same for a rectangular shape */
+            height: 175px; /* Reduced height */
+            width: 320px; /* Width remains for a rectangular shape */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -41,9 +41,8 @@
         }
 
         .card img {
-            width: 100%; /* Set image width to 100% of the card */
-            height: auto; /* Set height to auto for proper aspect ratio */
-            max-height: 80px; /* Adjusted max height for image to fit the smaller card */
+            max-width: 200px; /* Limit width to 200px */
+            max-height: 200px; /* Limit height to 200px */
             object-fit: contain; /* Maintain aspect ratio without cutting off */
             border-radius: 10px; /* Rounded corners for the image */
             margin-bottom: 10px; /* Space below the image */

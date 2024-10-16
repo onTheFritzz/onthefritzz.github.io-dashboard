@@ -23,7 +23,6 @@ class DHT11Result:
 
 
 class DHT11:
-    print('working')
     'DHT11 sensor reader class for Raspberry'
 
     __pin = 0
