@@ -103,7 +103,7 @@
     <div class="card">
         <img src="../images/ether.png" alt="Ether">
         <h3>ETHEREUM Price</h3>
-        <div class="value" id="ether">$2623.39</div>
+        <div class="value" id="ether">$2623.11</div>
     </div>
     <div class="card">
         <img src="../images/warehouse.png" alt="Warehouse">
@@ -131,13 +131,16 @@ function resizeTextToFit() {
         }
     });
 }
-
+setInterval(function() {
+    window.location.reload();
+}, 300_000);
 // Call the function after the page loads
 window.onload = function() {
     resizeTextToFit();
     window.addEventListener('resize', resizeTextToFit); // Adjust on window resize
 };
 </script>
-
+<br>
+APIs Last Updated: 10-16-2024 17:37:16
 </body>
 </html>
