@@ -17,11 +17,14 @@
         }
 
         .dashboard {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            grid-template-rows: repeat(2, 1fr);  /* 2 rows */
             gap: 20px; /* Gap between cards */
-            justify-content: center;
-            perspective: 1000px; /* Adds perspective for 3D effect */
+            justify-items: center;
+            align-items: center;
+            max-width: 100vw; /* Ensures the grid fits within the viewport width */
+            max-height: 100vh; /* Ensures the grid fits within the viewport height */
         }
         
         .card {
@@ -29,10 +32,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for cards */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
             border-radius: 10px;
-            padding: 10px; /* Adjusted padding for better layout */
-            flex: 1 1 30%; /* Flexible width */
-            max-width: 30%;
-            height: 350px; /* Adjusted height to accommodate image and text */
+            padding: 10px;
+            width: 90%; /* Responsive width based on viewport */
+            height: 280px; /* Adjusted height to fit the iPad screen */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -42,10 +44,10 @@
         }
 
         .card img {
-            width: 100%; /* Set image width to 100% of the card */
-            height: auto; /* Set height to auto for proper aspect ratio */
-            max-height: 200px; /* Max height for image */
-            object-fit: contain; /* Maintain aspect ratio without cutting off */
+            max-width: 100%; /* Set image width to 100% of the card */
+            height: auto;
+            max-height: 150px; /* Max height for the image */
+            object-fit: contain; /* Maintain aspect ratio */
             border-radius: 10px; /* Rounded corners for the image */
             margin-bottom: 10px; /* Space below the image */
         }
@@ -56,9 +58,9 @@
         }
 
         .card h3 {
-            font-size: clamp(1.2em, 2.5vw, 1.4em); /* Dynamically scale font size */
+            font-size: clamp(1em, 2vw, 1.4em); /* Dynamically scale font size */
             color: #FF79C6; /* Pink color for headings */
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-transform: uppercase; /* Uppercase for headings */
         }
         
@@ -66,28 +68,19 @@
             color: #50FA7B; /* Light green for values */
             font-weight: bold;
             line-height: 1.2; /* Adjust line height for better fit */
-            flex-grow: 1; /* Ensure the value text expands to take up available space */
             display: flex;
             align-items: center; /* Vertically center the text */
             justify-content: center; /* Horizontally center the text */
-            transition: color 0.3s; /* Smooth color transition */
-            overflow-wrap: break-word; /* Break long words */
-            word-wrap: break-word; /* Ensures words break within their container */
-            word-break: break-word; /* Breaks words if they are too long */
-            text-overflow: ellipsis; /* Adds ellipsis (...) if text overflows */
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+            text-overflow: ellipsis;
+            font-size: 1.1em; /* Adjusted font size */
         }
 
         @media (max-width: 768px) {
-            .card {
-                flex: 1 1 45%; /* Adjust for smaller screens */
-                max-width: 45%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .card {
-                flex: 1 1 100%; /* Stack cards on very small screens */
-                max-width: 100%;
+            .dashboard {
+                grid-template-columns: 1fr; /* Stack cards on smaller screens */
             }
         }
     </style>
@@ -103,7 +96,7 @@
     <div class="card">
         <img src="../images/ether.png" alt="Ether">
         <h3>ETHEREUM Price</h3>
-        <div class="value" id="ether">$2621.99</div>
+        <div class="value" id="ether">$2618.61</div>
     </div>
     <div class="card">
         <img src="../images/warehouse.png" alt="Warehouse">
@@ -113,7 +106,7 @@
     <div class="card">
         <img src="../images/weather.png" alt="Weather">
         <h3>Outside Temp/Humidity</h3>
-        <div class="value" id="pressure">52&#176;F / 47%</div>
+        <div class="value" id="pressure">58&#176;F / 34%</div>
     </div>
 </div>
 
@@ -140,7 +133,8 @@ window.onload = function() {
     window.addEventListener('resize', resizeTextToFit); // Adjust on window resize
 };
 </script>
+
 <br>
-APIs Last Updated: 10-16-2024 17:43:47
+APIs Last Updated: 10-16-2024 19:17:12
 </body>
 </html>
