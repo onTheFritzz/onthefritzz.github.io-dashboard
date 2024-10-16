@@ -17,10 +17,10 @@
         }
 
         .dashboard {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns grid */
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px; /* Gap between cards */
-            justify-items: center;
+            justify-content: center;
             perspective: 1000px; /* Adds perspective for 3D effect */
         }
         
@@ -30,8 +30,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
             border-radius: 10px;
             padding: 10px; /* Adjusted padding for better layout */
-            height: 175px; /* Reduced height */
-            width: 320px; /* Width remains for a rectangular shape */
+            flex: 1 1 30%; /* Flexible width */
+            max-width: 30%;
+            height: 350px; /* Adjusted height to accommodate image and text */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -41,8 +42,9 @@
         }
 
         .card img {
-            max-width: 200px; /* Limit width to 200px */
-            max-height: 200px; /* Limit height to 200px */
+            width: 100%; /* Set image width to 100% of the card */
+            height: auto; /* Set height to auto for proper aspect ratio */
+            max-height: 200px; /* Max height for image */
             object-fit: contain; /* Maintain aspect ratio without cutting off */
             border-radius: 10px; /* Rounded corners for the image */
             margin-bottom: 10px; /* Space below the image */
@@ -54,7 +56,7 @@
         }
 
         .card h3 {
-            font-size: clamp(1em, 2vw, 1.2em); /* Dynamically scaling font size */
+            font-size: clamp(1.2em, 2.5vw, 1.4em); /* Dynamically scale font size */
             color: #FF79C6; /* Pink color for headings */
             margin-bottom: 15px;
             text-transform: uppercase; /* Uppercase for headings */
@@ -75,14 +77,17 @@
             text-overflow: ellipsis; /* Adds ellipsis (...) if text overflows */
         }
 
-        /* Media query for smaller screens */
         @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr; /* 1 column grid on small screens */
-            }
             .card {
-                height: 160px; /* Further reduce height on small screens */
-                width: 100%; /* Full width for small screens */
+                flex: 1 1 45%; /* Adjust for smaller screens */
+                max-width: 45%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                flex: 1 1 100%; /* Stack cards on very small screens */
+                max-width: 100%;
             }
         }
     </style>
@@ -98,7 +103,7 @@
     <div class="card">
         <img src="../images/ether.png" alt="Ether">
         <h3>ETHEREUM Price</h3>
-        <div class="value" id="ether">$2620.16</div>
+        <div class="value" id="ether">$2620.57</div>
     </div>
     <div class="card">
         <img src="../images/warehouse.png" alt="Warehouse">
@@ -116,7 +121,7 @@
 function resizeTextToFit() {
     const cards = document.querySelectorAll('.card .value');
     cards.forEach(card => {
-        let fontSize = 26; // Smaller starting font size
+        let fontSize = 30; // Smaller starting font size
         card.style.fontSize = `${fontSize}px`;
 
         // Reduce font size until the text fits both vertically and horizontally
