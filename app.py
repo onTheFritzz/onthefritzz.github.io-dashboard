@@ -9,12 +9,12 @@ class eReader():
         with open(f'./config.yaml', 'r') as y:
             yml = yaml.safe_load(y)
 
-        #print(yml)
         self.distanceEndpoint = yml['distanceEndpoint']
         self.noaaEndpoint = yml['noaaEndpoint']
         self.ethEndpoint = yml['ethEndpoint']
         self.htmlOutputFile = yml['htmlOutput']
-        self.gitterFilePath = yml['gitterFilePath']
+        self.gitPusher = yml['gitPushFilePath']
+        self.dynamicHtml = yml['dynamicHtml']
 
         if os.name != 'nt':
             self.filePath = yml['linuxFilePath']
@@ -22,149 +22,9 @@ class eReader():
             self.filePath = yml['windowsFilePath']
 
     def update(self):
-        dashboardHtml = """
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stylish 3D Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #282A36; /* Dark background */
-            color: #F8F8F2; /* Light text color */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
-        }
+        with open(f'{self.dynamicHtml}') as file:
+            dashboardHtml = file.read()
 
-        .dashboard {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px; /* Gap between cards */
-            justify-content: center;
-            perspective: 1000px; /* Adds perspective for 3D effect */
-        }
-        
-        .card {
-            background-color: #44475A; /* Card background */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for cards */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
-            border-radius: 10px;
-            padding: 10px; /* Adjusted padding for better layout */
-            flex: 1 1 30%; /* Flexible width */
-            max-width: 30%;
-            height: 350px; /* Adjusted height to accommodate image and text */
-            text-align: center;
-            transform-style: preserve-3d; /* Enable 3D transformations */
-            transition: box-shadow 0.3s, transform 0.3s; /* Transition for shadow effect */
-        }
-
-        .card img {
-            width: 100%; /* Set image width to 100% of the card */
-            height: auto; /* Set height to auto for proper aspect ratio */
-            max-height: 200px; /* Max height for image */
-            object-fit: contain; /* Maintain aspect ratio without cutting off */
-            border-radius: 10px; /* Rounded corners for the image */
-            margin-bottom: 10px; /* Space below the image */
-        }
-        
-        .card:hover {
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
-            transform: translateY(-5px); /* Lift the card slightly on hover */
-        }
-
-        .card h3 {
-            font-size: 1.4em;
-            color: #FF79C6; /* Pink color for headings */
-            margin-bottom: 15px;
-            text-transform: uppercase; /* Uppercase for headings */
-        }
-        
-        .card .value {
-            font-size: 2.8em;
-            color: #50FA7B; /* Light green for values */
-            font-weight: bold;
-            transition: color 0.3s; /* Smooth color transition */
-        }
-        
-        .card:hover .value {
-            color: #FFB86C; /* Light orange on hover */
-        }
-
-        @media (max-width: 768px) {
-            .card {
-                flex: 1 1 45%; /* Adjust for smaller screens */
-                max-width: 45%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .card {
-                flex: 1 1 100%; /* Stack cards on very small screens */
-                max-width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="dashboard">
-    <div class="card">
-        <img src="../images/commute.png" alt="Commute">
-        <h3>#COMMUTETITLE#</h3>
-        <div class="value" id="commute">#COMMUTESTATUS#</div>
-    </div>
-    <div class="card">
-        <img src="../images/ether.png" alt="Ether">
-        <h3>#ETHERTITLE#</h3>
-        <div class="value" id="ether">#ETHERPRICE#</div>
-    </div>
-    <div class="card">
-        <img src="../images/warehouse.png" alt="Warehouse">
-        <h3>#WAREHOUSETITLE#</h3>
-        <div class="value" id="warehouse">#WAREHOUSETEMP#</div>
-    </div>
-    <div class="card">
-        <img src="../images/weather.png" alt="Weather">
-        <h3>#OUTSIDETITLE#</h3>
-        <div class="value" id="pressure">#OUTSIDETEMP#</div>
-    </div>
-</div>
-
-<script>
-// Sample JSON data for environmental variables
-
-/*const data = {
-    "warehouse": "99°C/48%",
-    "humidity": "60 %",
-    "windSpeed": "15 km/h",
-    "pressure": "1015 hPa",
-    "visibility": "10 km",
-    "uvIndex": "5"
-};
-
-// Function to display data in the dashboard
-function loadDashboardData() {
-    document.getElementById('temperature').innerText = data.temperature;
-    document.getElementById('humidity').innerText = data.humidity;
-    document.getElementById('windSpeed').innerText = data.windSpeed;
-    document.getElementById('pressure').innerText = data.pressure;
-    document.getElementById('visibility').innerText = data.visibility;
-    document.getElementById('uvIndex').innerText = data.uvIndex;
-}
-
-// Load the data after the page is fully loaded
-window.onload = loadDashboardData;
-*/
-</script>
-#TIMESTAMP#
-</body>
-</html>                   
-    """
         travelTitle = 'Drive Home'
 
         with open(f'{self.filePath}current-travel-time.txt', 'r') as r: #self.getTravelTime() # '17-21mins'#
@@ -282,7 +142,7 @@ window.onload = loadDashboardData;
 
     def gitPushup(self):
         print('Pushing updates to git...')
-        os.system(f'sudo bash {e.gitterFilePath}gitPush.sh &')
+        os.system(f'sudo bash {e.gitPusher}gitPush.sh &')
 
 if __name__ == "__main__":
   e = eReader()
