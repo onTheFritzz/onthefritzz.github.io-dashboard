@@ -17,67 +17,77 @@
         }
 
         .dashboard {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns */
-            grid-template-rows: repeat(2, 1fr); /* 2 rows */
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px; /* Gap between cards */
-            justify-items: center;
-            align-items: center;
+            justify-content: center;
+            perspective: 1000px; /* Adds perspective for 3D effect */
         }
-
+        
         .card {
             background-color: #44475A; /* Card background */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Shadow */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for cards */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
             border-radius: 10px;
-            padding: 10px;
-            height: 200px; /* Reduced height for rectangular shape */
-            width: 350px; /* Increased width */
+            padding: 10px; /* Adjusted padding for better layout */
+            flex: 1 1 30%; /* Flexible width */
+            max-width: 30%;
+            height: 350px; /* Adjusted height to accommodate image and text */
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: space-between; /* Spread content evenly */
-            transition: box-shadow 0.3s, transform 0.3s;
+            transform-style: preserve-3d; /* Enable 3D transformations */
+            transition: box-shadow 0.3s, transform 0.3s; /* Transition for shadow effect */
         }
 
         .card img {
-            max-width: 200px; /* Limit max image width */
-            max-height: 200px; /* Limit max image height */
-            object-fit: contain;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            width: 100%; /* Set image width to 100% of the card */
+            height: auto; /* Set height to auto for proper aspect ratio */
+            max-height: 200px; /* Max height for image */
+            object-fit: contain; /* Maintain aspect ratio without cutting off */
+            border-radius: 10px; /* Rounded corners for the image */
+            margin-bottom: 10px; /* Space below the image */
         }
-
+        
         .card:hover {
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Shadow on hover */
-            transform: translateY(-5px); /* Lift effect */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+            transform: translateY(-5px); /* Lift the card slightly on hover */
         }
 
         .card h3 {
-            font-size: clamp(1em, 2vw, 1.2em); /* Dynamically scale font */
-            color: #FF79C6;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+            font-size: clamp(1.2em, 2.5vw, 1.4em); /* Dynamically scale font size */
+            color: #FF79C6; /* Pink color for headings */
+            margin-bottom: 15px;
+            text-transform: uppercase; /* Uppercase for headings */
         }
-
+        
         .card .value {
-            color: #50FA7B;
+            color: #50FA7B; /* Light green for values */
             font-weight: bold;
-            line-height: 1.2;
-            flex-grow: 1;
+            line-height: 1.2; /* Adjust line height for better fit */
+            flex-grow: 1; /* Ensure the value text expands to take up available space */
             display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow-wrap: break-word;
-            text-overflow: ellipsis;
+            align-items: center; /* Vertically center the text */
+            justify-content: center; /* Horizontally center the text */
+            transition: color 0.3s; /* Smooth color transition */
+            overflow-wrap: break-word; /* Break long words */
+            word-wrap: break-word; /* Ensures words break within their container */
+            word-break: break-word; /* Breaks words if they are too long */
+            text-overflow: ellipsis; /* Adds ellipsis (...) if text overflows */
         }
 
         @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr; /* Stacks cards on smaller screens */
-            }
             .card {
-                width: 100%; /* Full width on smaller screens */
+                flex: 1 1 45%; /* Adjust for smaller screens */
+                max-width: 45%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                flex: 1 1 100%; /* Stack cards on very small screens */
+                max-width: 100%;
             }
         }
     </style>
@@ -93,7 +103,7 @@
     <div class="card">
         <img src="../images/ether.png" alt="Ether">
         <h3>ETHEREUM Price</h3>
-        <div class="value" id="ether">$2621.11</div>
+        <div class="value" id="ether">$2621.99</div>
     </div>
     <div class="card">
         <img src="../images/warehouse.png" alt="Warehouse">
@@ -111,10 +121,10 @@
 function resizeTextToFit() {
     const cards = document.querySelectorAll('.card .value');
     cards.forEach(card => {
-        let fontSize = 30; // Starting font size
+        let fontSize = 30; // Smaller starting font size
         card.style.fontSize = `${fontSize}px`;
 
-        // Reduce font size until the text fits within the card
+        // Reduce font size until the text fits both vertically and horizontally
         while ((card.scrollWidth > card.clientWidth || card.scrollHeight > card.clientHeight) && fontSize > 10) {
             fontSize -= 1;
             card.style.fontSize = `${fontSize}px`;
@@ -123,13 +133,14 @@ function resizeTextToFit() {
 }
 setInterval(function() {
     window.location.reload();
-}, 300000); // Reload every 5 minutes
-
+}, 300_000);
+// Call the function after the page loads
 window.onload = function() {
     resizeTextToFit();
-    window.addEventListener('resize', resizeTextToFit); // Adjust text on resize
+    window.addEventListener('resize', resizeTextToFit); // Adjust on window resize
 };
 </script>
-
+<br>
+APIs Last Updated: 10-16-2024 17:43:47
 </body>
 </html>
