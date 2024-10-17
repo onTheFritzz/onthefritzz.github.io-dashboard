@@ -155,15 +155,14 @@ if __name__ == "__main__":
         if now > '08:00:00' and now < '08:15:00':
             e.getTravelTime()
             e.update()
-            print('Sleeping 900...')
-            time.sleep(900)
-
+            print('Sleeping 300...')
+            time.sleep(300)
+            
         elif now > '15:45:00' and now < '16:30:00':
             e.getTravelTime()
             e.update()
-            print('Sleeping 500...')
-            time.sleep(500)
-
+            print('Sleeping 300...')
+            time.sleep(300)
         else:
             e.update()
             shutil.copyfile(f'{e.filePath}{e.htmlOutputFile}', f'{e.filePath}index.html')
@@ -171,5 +170,5 @@ if __name__ == "__main__":
     else:
         pass
 
-    print('Sleeping 150...')
-    time.sleep(150)
+    print('Sleeping 600...')
+    time.sleep(600)
