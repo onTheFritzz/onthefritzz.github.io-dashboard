@@ -6,7 +6,7 @@ from work import dht11
 
 class eReader():
     def __init__(self):
-        with open(f'./config.yaml', 'r') as y:
+        with open(f'/home/stuxnet/dashboard/config.yaml', 'r') as y:
             yml = yaml.safe_load(y)
 
         self.distanceEndpoint = yml['distanceEndpoint']
@@ -32,7 +32,7 @@ class eReader():
             print(travelInfo)
 
         whTitle = 'Warehouse Temp/Humidity'
-            
+
         if os.name != 'nt':
             whTempHumid = self.getWarehouseTemp() #'57&#176;F / 45%'
         else:
@@ -51,10 +51,10 @@ class eReader():
         dashboardHtml = dashboardHtml.replace('#OUTSIDETITLE#', outsideTitle).replace('#OUTSIDETEMP#', outsideTempHumid)
         dashboardHtml = dashboardHtml.replace('#ETHERTITLE#', cryptoTitle).replace('#ETHERPRICE#', cryptoPrice)
         dashboardHtml = dashboardHtml.replace('#TIMESTAMP#', currentTime)
-            
+
         with open(f'{self.filePath}{self.htmlOutputFile}', 'w+') as html:
           html.write(dashboardHtml)
-            
+
         with open(f'{self.filePath}index.html', 'w+') as html:
             html.write(dashboardHtml)
 
@@ -82,7 +82,7 @@ class eReader():
 
                 outputArray = f'{temp}&#176;{unit} / {humidity}%'#, icon]
                 return(outputArray)
-            
+
             except:
                 x += 1
                 outputArray = [f'NA / NA', 'NA']
@@ -151,7 +151,7 @@ if __name__ == "__main__":
     print(now)
     weekNumber = dt.today().weekday()
 
-    if weekNumber < 5:
+    if weekNumber > 5:
         if now > '08:00:00' and now < '08:15:00':
             e.getTravelTime()
             e.update()
