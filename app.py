@@ -3,9 +3,18 @@ from datetime import datetime as dt
 from pyA20.gpio import gpio
 from pyA20.gpio import port
 from work import dht11
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 class eReader():
     def __init__(self):
+
+        self.session = requests.Session()
+        retry = Retry(connect=3, backoff_factor=0.5)
+        adapter = HTTPAdapter(max_retries=retry)
+        self.session.mount('http://', adapter)
+        self.session.mount('https://', adapter)
+
         with open(f'/home/stuxnet/dashboard/config.yaml', 'r') as y:
             yml = yaml.safe_load(y)
 
@@ -65,7 +74,8 @@ class eReader():
         x = 0
         while x < 3:
             try:
-                noaaGet = requests.get(self.noaaEndpoint)
+                noaaGet = self.session.get(self.noaaEndpoint)
+                #noaaGet = requests.get(self.noaaEndpoint)
                 noaaJson = noaaGet.json()
 
                 todayForecast = noaaJson['properties']['periods'][0]
@@ -120,7 +130,8 @@ class eReader():
         return(outputString)
         
     def getCryptoPrice(self):
-        cryptoPrice = requests.get(self.ethEndpoint)
+        cryptoPrice = self.session.get(self.ethEndpoint)
+        #cryptoPrice = requests.get(self.ethEndpoint)
         cryptoJson = cryptoPrice.json()
         cryptoToUSD = round(float(cryptoJson['data']['amount']), 2)
         outputString = f'${cryptoToUSD}'
@@ -129,7 +140,8 @@ class eReader():
         return(outputString)
     
     def getTravelTime(self):
-        responseJson = requests.get(self.distanceEndpoint).json()
+        responseJson = self.session.get(self.distanceEndpoint).json()
+        #responseJson = requests.get(self.distanceEndpoint).json()
         durationTime = responseJson['rows'][0]['elements'][0]['duration']['text']
         durationInTraffic = responseJson['rows'][0]['elements'][0]['duration_in_traffic']['text']
         travelTimeRange = f'{durationTime.replace(" mins", "")}-{durationInTraffic}'
