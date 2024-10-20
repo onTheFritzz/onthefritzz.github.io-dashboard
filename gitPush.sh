@@ -1,5 +1,5 @@
 #!/bin/bash
-datetimenow = date "+%m-%d-%Y %H:%M:%S"
+datetimenow=date "+%m-%d-%Y %H:%M:%S"
 echo "Current Time: ${datetimenow}"
 cd /home/stuxnet/dashboard/
 git add .
