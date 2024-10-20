@@ -40,14 +40,14 @@ class eReader():
             travelInfo = r.readlines()[0]
             print(travelInfo)
 
-        whTitle = 'Warehouse Temp/Humidity'
+        whTitle = 'Warehouse:'
 
         if os.name != 'nt':
             whTempHumid = self.getWarehouseTemp() #'57&#176;F / 45%'
         else:
             whTempHumid = '12&#176;F / 99%'
 
-        outsideTitle = 'Outside Temp/Humidity'
+        outsideTitle = 'Outside:'
         outsideTempHumid = self.scrapeNOAA()
 
         cryptoTitle = 'ETHEREUM Price'
