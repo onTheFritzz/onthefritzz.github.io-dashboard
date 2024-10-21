@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>onTheFritzz</title>
+    <title>Stylish 3D Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -14,7 +14,6 @@
             color: #F8F8F2; /* Light text color */
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
-            font-size: 1.2em; /* Larger base font size */
         }
 
         .dashboard {
@@ -33,9 +32,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for cards */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
             border-radius: 10px;
-            padding: 20px; /* Increased padding */
+            padding: 10px;
             width: 90%; /* Responsive width based on viewport */
-            height: 300px; /* Adjusted height */
+            height: 280px; /* Adjusted height to fit the iPad screen */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -59,9 +58,9 @@
         }
 
         .card h3 {
-            font-size: clamp(1.6em, 2.5vw, 2em); /* Larger dynamic font size */
+            font-size: clamp(1em, 2vw, 1.4em); /* Dynamically scale font size */
             color: #FF79C6; /* Pink color for headings */
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-transform: uppercase; /* Uppercase for headings */
         }
         
@@ -76,7 +75,7 @@
             word-wrap: break-word;
             word-break: break-word;
             text-overflow: ellipsis;
-            font-size: 1.5em; /* Larger font size for values */
+            font-size: 1.1em; /* Adjusted font size */
         }
 
         @media (max-width: 768px) {
@@ -115,7 +114,7 @@
 function resizeTextToFit() {
     const cards = document.querySelectorAll('.card .value');
     cards.forEach(card => {
-        let fontSize = 40; // Larger starting font size
+        let fontSize = 30; // Smaller starting font size
         card.style.fontSize = `${fontSize}px`;
 
         // Reduce font size until the text fits both vertically and horizontally
