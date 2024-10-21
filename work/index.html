@@ -23,17 +23,36 @@
       padding: 2px 16px;
     }
 
+    /* Default card style */
     .card {
       border: 1px solid #000;
       display: inline-block;
       padding: 10px;
       margin: 5px;
-      height: 240px; /*240px*/
-      width: 300px;  /*300px*/
+      height: 240px; /* 240px */
+      width: 300px;  /* 300px */
     }
 
     .weatherImg {
       opacity: 0.80;
+    }
+
+    /* Responsive design for iPad A2270 */
+    @media only screen and (min-width: 810px) and (max-width: 2160px) {
+      .card {
+        height: 300px;
+        width: 350px;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      h8 {
+        font-size: 1.2em;
+      }
+      font[size="30"] {
+        font-size: 2em;
+      }
     }
 
     </style>
@@ -44,7 +63,7 @@
         <img src="../images/commute.png" alt="Avatar">
         <div class="container">
           <h8><b>Drive Home</b></h8><br>
-          <font size="30"><b>17-20 mins</b></font></h9>
+          <font size="30"><b>17-20 mins</b></font>
         </div>
     </div>
 
@@ -52,15 +71,15 @@
         <img src="../images/ether.png" alt="Avatar">
         <div class="container">
           <h8><b>ETHEREUM Price</b></h8><br>
-          <font size="30"><b>$2670.53</b></font></h9>
+          <font size="30"><b>$2661.91</b></font>
         </div>
     </div>
     <br>
     <div class="card">
         <img src="../images/warehouse.png" alt="Avatar">
         <div class="container">
-          <h8><b>Warehouse:</b></h8></font><br>
-          <font size="30"><b>72&#176;F / 46%</b></font><br>
+          <h8><b>Warehouse:</b></h8><br>
+          <font size="30"><b>32&#176;F / 0%</b></font><br>
         </div>
     </div>
 
@@ -69,12 +88,12 @@
         <img src="../images/weather.png" alt="Avatar">
         <!--<div class="weatherImg"><img src="#WEATHERICON#" alt="Avatar" width="150" height="150"></div>-->
         <div class="container">
-          <h8><b>Outside:</b></h8></font><br>
+          <h8><b>Outside:</b></h8><br>
           <font size="30"><b>62&#176;F / 58%</b></font><br>
         </div>
     </div>
     <br>
-    APIs Last Updated: 10-21-2024 10:20:10
+    APIs Last Updated: 10-21-2024 10:30:11
     </center>
     </body>
-</html>                    
+</html>

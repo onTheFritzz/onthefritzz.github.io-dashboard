@@ -23,17 +23,36 @@
       padding: 2px 16px;
     }
 
+    /* Default card style */
     .card {
       border: 1px solid #000;
       display: inline-block;
       padding: 10px;
       margin: 5px;
-      height: 240px; /*240px*/
-      width: 300px;  /*300px*/
+      height: 240px; /* 240px */
+      width: 300px;  /* 300px */
     }
 
     .weatherImg {
       opacity: 0.80;
+    }
+
+    /* Responsive design for iPad A2270 */
+    @media only screen and (min-width: 810px) and (max-width: 2160px) {
+      .card {
+        height: 300px;
+        width: 350px;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      h8 {
+        font-size: 1.2em;
+      }
+      font[size="30"] {
+        font-size: 2em;
+      }
     }
 
     </style>
@@ -44,7 +63,7 @@
         <img src="../images/commute.png" alt="Avatar">
         <div class="container">
           <h8><b>#COMMUTETITLE#</b></h8><br>
-          <font size="30"><b>#COMMUTESTATUS#</b></font></h9>
+          <font size="30"><b>#COMMUTESTATUS#</b></font>
         </div>
     </div>
 
@@ -52,14 +71,14 @@
         <img src="../images/ether.png" alt="Avatar">
         <div class="container">
           <h8><b>#ETHERTITLE#</b></h8><br>
-          <font size="30"><b>#ETHERPRICE#</b></font></h9>
+          <font size="30"><b>#ETHERPRICE#</b></font>
         </div>
     </div>
     <br>
     <div class="card">
         <img src="../images/warehouse.png" alt="Avatar">
         <div class="container">
-          <h8><b>#WAREHOUSETITLE#</b></h8></font><br>
+          <h8><b>#WAREHOUSETITLE#</b></h8><br>
           <font size="30"><b>#WAREHOUSETEMP#</b></font><br>
         </div>
     </div>
@@ -69,7 +88,7 @@
         <img src="../images/weather.png" alt="Avatar">
         <!--<div class="weatherImg"><img src="#WEATHERICON#" alt="Avatar" width="150" height="150"></div>-->
         <div class="container">
-          <h8><b>#OUTSIDETITLE#</b></h8></font><br>
+          <h8><b>#OUTSIDETITLE#</b></h8><br>
           <font size="30"><b>#OUTSIDETEMP#</b></font><br>
         </div>
     </div>
@@ -77,4 +96,4 @@
     #TIMESTAMP#
     </center>
     </body>
-</html>                    
+</html>
