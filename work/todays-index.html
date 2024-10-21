@@ -1,131 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>onTheFritzz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<html>
+    <head>
+    <script>
+    setInterval(function() {
+     window.location.reload();
+    }, 300_000);
+    </script>
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #282A36; /* Dark background */
-            color: #F8F8F2; /* Light text color */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
-        }
+    .card {
+      /* Add shadows to create the "card" effect */
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
 
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns */
-            grid-template-rows: repeat(2, 1fr);  /* 2 rows */
-            gap: 20px; /* Gap between cards */
-            justify-items: center;
-            align-items: center;
-            max-width: 100vw; /* Ensures the grid fits within the viewport width */
-            max-height: 100vh; /* Ensures the grid fits within the viewport height */
-        }
-        
-        .card {
-            background-color: #44475A; /* Card background */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for cards */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
-            border-radius: 10px;
-            padding: 10px;
-            width: 90%; /* Responsive width based on viewport */
-            height: 280px; /* Adjusted height to fit the iPad screen */
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Center content vertically */
-            transform-style: preserve-3d; /* Enable 3D transformations */
-            transition: box-shadow 0.3s, transform 0.3s; /* Transition for shadow effect */
-        }
+    /* On mouse-over, add a deeper shadow */
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
 
-        .card img {
-            max-width: 100%; /* Set image width to 100% of the card */
-            height: auto;
-            max-height: 150px; /* Max height for the image */
-            object-fit: contain; /* Maintain aspect ratio */
-            border-radius: 10px; /* Rounded corners for the image */
-            margin-bottom: 10px; /* Space below the image */
-        }
-        
-        .card:hover {
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
-            transform: translateY(-5px); /* Lift the card slightly on hover */
-        }
+    /* Add some padding inside the card container */
+    .container {
+      padding: 2px 16px;
+    }
 
-        /* Removed the h3 styling and the pink color */
-        
-        .card .value {
-            color: #50FA7B; /* Light green for values */
-            font-weight: bold;
-            line-height: 1.2; /* Adjust line height for better fit */
-            display: flex;
-            align-items: center; /* Vertically center the text */
-            justify-content: center; /* Horizontally center the text */
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            word-break: break-word;
-            text-overflow: ellipsis;
-            font-size: 2em; /* Increased font size for green text */
-        }
+    .card {
+      border: 1px solid #000;
+      display: inline-block;
+      padding: 10px;
+      margin: 5px;
+      height: 240px; /*240px*/
+      width: 300px;  /*300px*/
+    }
 
-        @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr; /* Stack cards on smaller screens */
-            }
-        }
+    .weatherImg {
+      opacity: 0.80;
+    }
+
     </style>
-</head>
-<body>
-
-<div class="dashboard">
+    </head>
+    <body>
+    <center>
     <div class="card">
-        <img src="../images/commute.png" alt="Commute">
-        <div class="value" id="commute">17-20 mins</div>
+        <img src="../images/commute.png" alt="Avatar">
+        <div class="container">
+          <h8><b>Drive Home</b></h8><br>
+          <font size="30"><b>17-20 mins</b></font></h9>
+        </div>
     </div>
-    <div class="card">
-        <img src="../images/ether.png" alt="Ether">
-        <div class="value" id="ether">$2669.85</div>
-    </div>
-    <div class="card">
-        <img src="../images/warehouse.png" alt="Warehouse">
-        <div class="value" id="warehouse">32&#176;F / 0%</div>
-    </div>
-    <div class="card">
-        <img src="../images/weather.png" alt="Weather">
-        <div class="value" id="pressure">62&#176;F / 58%</div>
-    </div>
-</div>
 
-<script>
-function resizeTextToFit() {
-    const cards = document.querySelectorAll('.card .value');
-    cards.forEach(card => {
-        let fontSize = 40; // Increased starting font size
-        card.style.fontSize = `${fontSize}px`;
+    <div class="card">
+        <img src="../images/ether.png" alt="Avatar">
+        <div class="container">
+          <h8><b>ETHEREUM Price</b></h8><br>
+          <font size="30"><b>$2659.95</b></font></h9>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <img src="../images/warehouse.png" alt="Avatar">
+        <div class="container">
+          <h8><b>Warehouse:</b></h8></font><br>
+          <font size="30"><b>32&#176;F / 0%</b></font><br>
+        </div>
+    </div>
 
-        // Reduce font size until the text fits both vertically and horizontally
-        while ((card.scrollWidth > card.clientWidth || card.scrollHeight > card.clientHeight) && fontSize > 10) {
-            fontSize -= 1;
-            card.style.fontSize = `${fontSize}px`;
-        }
-    });
-}
-setInterval(function() {
-    window.location.reload();
-}, 300_000);
-// Call the function after the page loads
-window.onload = function() {
-    resizeTextToFit();
-    window.addEventListener('resize', resizeTextToFit); // Adjust on window resize
-};
-</script>
-
-<br>
-APIs Last Updated: 10-21-2024 09:17:18
-</body>
-</html>
+    <div class="card">
+        <!--<img src="thermo.png" alt="Avatar">-->
+        <img src="../images/weather.png" alt="Avatar">
+        <!--<div class="weatherImg"><img src="#WEATHERICON#" alt="Avatar" width="150" height="150"></div>-->
+        <div class="container">
+          <h8><b>Outside:</b></h8></font><br>
+          <font size="30"><b>62&#176;F / 58%</b></font><br>
+        </div>
+    </div>
+    <br>
+    APIs Last Updated: 10-21-2024 10:10:05
+    </center>
+    </body>
+</html>                    
