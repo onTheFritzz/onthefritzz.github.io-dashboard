@@ -163,7 +163,7 @@ if __name__ == "__main__":
     print(now)
     weekNumber = dt.today().weekday()
 
-    if weekNumber > 5:
+    if weekNumber < 5:
         if now > '08:00:00' and now < '08:15:00':
             e.getTravelTime()
             e.update()
